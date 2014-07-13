@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('appsApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Page) {
     $scope.awesomeThings = [];
-
+    $scope.Page = Page
+    Page.setTitle('HRMS - APP');
+    console.log(Page);
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
       socket.syncUpdates('thing', $scope.awesomeThings);
